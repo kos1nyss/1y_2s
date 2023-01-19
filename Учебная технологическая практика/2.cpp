@@ -6,10 +6,18 @@ int main()
 	int mas_a[N] = { 1, 2, 3, 4, 5 };
 	int mas_b[N] = { 0 };
 
-	const char* f_pointer = (const char*)mas_a;
-	char* t_pointer = (char*)mas_b;
-	for (int i = 0; i < N; ++i)
+	const long long* pointer1 = (const long long*)mas_a;
+	long long* t_pointer1 = (long long*)mas_b;
+	int m = sizeof(int) * N / sizeof(long long);
+	for (int i = 0; i < m; ++i)
 	{
-		*(t_pointer++) = *(f_pointer++);
+		*(t_pointer1++) = *(pointer1++);
+	}
+	char* pointer2 = (char*)pointer1;
+	char* t_pointer2 = (char*)t_pointer1;
+
+	m = (sizeof(int) * N) % sizeof(long long);
+	for (int i = 0; i < m; i++) {
+		*(t_pointer2++) = *(pointer2++);
 	}
 }
