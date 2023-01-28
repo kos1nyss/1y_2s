@@ -40,7 +40,7 @@ public:
         delete[] characters;
     }
 
-    String& operator + (const String& other) {
+    String operator + (const String& other) {
         char* updated_characters = new char[this->size + other.size - 2];
 
         for (int i = 0; i < (this->size - 1); i++) {
@@ -50,9 +50,9 @@ public:
             updated_characters[i + this->size - 1] = other.characters[i];
         }
 
-        String *new_string = new String(updated_characters);
+        String new_string = String(updated_characters);
         delete[] updated_characters;
-        return *new_string;
+        return new_string;
     }
 
     void operator += (const String& other) {
