@@ -74,15 +74,15 @@ public:
     }
 
     bool operator < (const String& other) {
-        return size < other.size;
+        return std::strcmp(characters, other.characters) < 0;
     }
 
     bool operator > (const String& other) {
-        return size > other.size;
+        return std::strcmp(characters, other.characters) > 0;
     }
 
     bool operator == (const String& other) {
-        return size == other.size;
+        return std::strcmp(characters, other.characters) == 0;
     }
 
     int find(char c) {
