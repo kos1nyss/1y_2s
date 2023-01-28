@@ -51,6 +51,7 @@ public:
         }
 
         String *new_string = new String(updated_characters);
+        delete[] updated_characters;
         return *new_string;
     }
 
@@ -64,6 +65,7 @@ public:
         for (int i = 0; i < other.size; i++) {
             updated_characters[i + this->size - 1] = other.characters[i];
         }
+        delete[] characters;
         characters = updated_characters;
     }
 
