@@ -55,7 +55,7 @@ public:
         return new_string;
     }
 
-    void operator += (const String& other) {
+    String& operator += (const String& other) {
         size = size + other.size - 1;
         char* updated_characters = new char[this->size + other.size - 1];
 
@@ -67,6 +67,7 @@ public:
         }
         delete[] characters;
         characters = updated_characters;
+        return *this;
     }
 
     char& operator [] (int index) {
