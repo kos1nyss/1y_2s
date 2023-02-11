@@ -28,26 +28,37 @@ public:
         return *this;
     }
 
+    Complex& operator + (const Complex& other) {
+        Complex new_complex = Complex(a + other.a , b + other.b);
+        return new_complex;
+    }
+
     Complex& operator *= (const Complex& other) {
-        a = a * other.a - b * other.b;
-        b = a * other.b + other.a * b;
+        int new_a, new_b;
+
+        new_a = a * other.a - b * other.b;
+        new_b = a * other.b + other.a * b;
+        a = new_a;
+        b = new_b;
+
         return *this;
 }
 
-Complex& operator * (const Complex& other) {
-    Complex new_complex = Complex(a * other.a - b * other.b, a * other.b + other.a * b);
-    return new_complex;
-}
+    Complex& operator * (const Complex& other) {
+        Complex new_complex = Complex(a * other.a - b * other.b, a * other.b + other.a * b);
+        return new_complex;
+    }
 
-Complex& operator ++ () {
-    ++a;
-    return *this;
-}
+    Complex& operator ++ () {
+        ++a;
+        return *this;
+    }
 
-Complex& operator ++ (int _) {
-    a++;
-    return *this;
-}
+    Complex& operator ++ (int _) {
+        Complex copy(*this);
+        a++;
+        return copy;
+    }
 
 friend std::ostream& operator << (std::ostream& os, const Complex& c);
 friend std::istream& operator >> (std::istream& in, Complex& c);
