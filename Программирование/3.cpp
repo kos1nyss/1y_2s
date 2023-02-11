@@ -28,7 +28,7 @@ public:
         return *this;
     }
 
-    Complex& operator + (const Complex& other) {
+    Complex operator + (const Complex& other) {
         Complex new_complex = Complex(a + other.a , b + other.b);
         return new_complex;
     }
@@ -42,9 +42,9 @@ public:
         b = new_b;
 
         return *this;
-}
+    }
 
-    Complex& operator * (const Complex& other) {
+    Complex operator * (const Complex& other) {
         Complex new_complex = Complex(a * other.a - b * other.b, a * other.b + other.a * b);
         return new_complex;
     }
@@ -54,7 +54,7 @@ public:
         return *this;
     }
 
-    Complex& operator ++ (int _) {
+    Complex operator ++ (int _) {
         Complex copy(*this);
         a++;
         return copy;
