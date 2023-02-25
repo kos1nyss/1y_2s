@@ -26,6 +26,8 @@ private:
     }
 
 public:
+    Matrix() {}
+
     Matrix(T2 n, T3 m) {
         N = n;
         M = m;
@@ -89,7 +91,7 @@ public:
         return *this;
     }
 
-    Matrix operator ++(){
+    Matrix operator++() {
         Matrix<T1, T2, T3> old_matrix = *this;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
@@ -108,7 +110,7 @@ public:
             return 0;
         }
 
-        double** temp_matrix = new double*[N];
+        double **temp_matrix = new double *[N];
         for (int i = 0; i < N; i++) {
             temp_matrix[i] = new double[N];
             for (int j = 0; j < N; j++) {
@@ -130,8 +132,8 @@ public:
                 if (temp_matrix[shift][shift] == 0) {
                     return 0;
                 }
-                k = (double)temp_matrix[i][shift] / temp_matrix[shift][shift];
-                for (int j = shift; j < N; j++){
+                k = (double) temp_matrix[i][shift] / temp_matrix[shift][shift];
+                for (int j = shift; j < N; j++) {
                     temp_matrix[i][j] -= temp_matrix[shift][j] * k;
                 }
             }
@@ -145,4 +147,28 @@ public:
 
         return det;
     }
+
+    friend std::ostream &operator<<(std::ostream &os, const Matrix &c);
+
+    friend std::istream &operator>>(std::istream &in, Matrix &c);
 };
+
+template<class T1, class T2, class T3>
+std::ostream &operator<<(std::ostream &os, const Matrix<T1, T2, T3> &m) {
+    for (int i = 0; i < m.N; i++) {
+        for (int j = 0; j < m.N; j++) {
+            os << m[i][j] << ' ';
+        }
+        std::cout << std::endl;
+    }
+    return os;
+}
+template<class T1, class T2, class T3>
+std::istream &operator>>(std::istream &in, Matrix<T1, T2, T3> &m) {
+    for (int i = 0; i < m.N; i++) {
+        for (int j = 0; j < m.N; j++) {
+            in >> m[i][j];
+        }
+    }
+    return in;
+}
