@@ -14,7 +14,6 @@ public:
     reference& operator = (bool value) {
         char p = (char)pow(2, n);
         if (value) {
-            char p = (char)pow(2, n);
             *byte |= p;
         } else {
             *byte = *byte & ~p;
