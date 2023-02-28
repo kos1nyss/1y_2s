@@ -91,7 +91,7 @@ public:
         return *this;
     }
 
-    Matrix operator++() {
+    Matrix& operator++(int _) {
         Matrix<T1, T2, T3> old_matrix = *this;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
